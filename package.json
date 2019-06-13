@@ -1,0 +1,17 @@
+{
+  "name": "minimal-webassembly",
+  "version": "0.1.0",
+  "description": "WebAssembly hello world",
+  "main": "index.js",
+  "scripts": {
+    "compile": "wat2wasm entry/hello.wat -o target/hello.wasm",
+    "cp": "cp entry/index.html target/; cp entry/hello.js target/",
+    "serve": "http-server target/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jiyinyiyong",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
