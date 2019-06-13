@@ -18,7 +18,9 @@ function main(event) {
     response.arrayBuffer()
   ).then(bytes =>
     WebAssembly.instantiate(bytes, exposed)
-  ).then(result =>
+  ).then(result => {
     result.instance.exports.main()
+    console.log(result.instance.exports.add(77,88))
+  }
   )
 }
