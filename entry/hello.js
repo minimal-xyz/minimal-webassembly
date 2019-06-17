@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", main)
 
 function log(offset, length) {
   const bytes = new Uint8Array(memory.buffer, offset, length)
@@ -13,14 +12,10 @@ const exposed = {
   js: { mem: memory }
 }
 
-function main(event) {
-  fetch('hello.wasm').then(response =>
-    response.arrayBuffer()
-  ).then(bytes =>
-    WebAssembly.instantiate(bytes, exposed)
-  ).then(result => {
-    result.instance.exports.main()
-    console.log(result.instance.exports.add(77,88))
-  }
-  )
+window.onload = async function main(event) {
+  let response = await fetch('hello.wasm')
+  let bytes = await response.arrayBuffer()
+  let result = await WebAssembly.instantiate(bytes, exposed)
+  result.instance.exports.main()
+  console.log(result.instance.exports.add(77,88))
 }
